@@ -1,4 +1,4 @@
-package isika.cda24.exo.projet1;
+package isika.cda24.NEWPROJET1;
 
 public class SystemInfo {
 
