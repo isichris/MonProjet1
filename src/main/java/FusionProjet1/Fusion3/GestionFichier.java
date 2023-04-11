@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class GestionFichier {
 
-
 	public ArrayList<Stagiaire> lireListStagiaireTxt() {
 
 		ArrayList<Stagiaire> listeStagiaire = new ArrayList<>(); // Créer une liste pour stocker les stagiaires lus
@@ -63,20 +62,4 @@ public class GestionFichier {
 		}
 		return listeStagiaire;
 	}
-
-//			while (br.ready()) {
-//				
-//				stagiaire.setNom(br.readLine());
-//				stagiaire.setPrenom(br.readLine());
-//				stagiaire.setLocalisation(br.readLine());
-//				stagiaire.setFormation(br.readLine());
-//				int annee = Integer.parseInt(br.readLine());
-//				stagiaire.setAnneeEntree(annee);
-//				br.readLine();
-//				
-//			}
-
 }
-//File fichier = new File("src/main/java/isika/cda24/model/fichier");
-//
-//fichier.mkdir();

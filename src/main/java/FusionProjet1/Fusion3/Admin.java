@@ -3,7 +3,6 @@ package FusionProjet1.Fusion3;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +11,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
+/**
+ * La classe Admin représente l'interface pour accéder aux fonctionnalités
+ * d'administration de l'application. Elle permet de se connecter en tant
+ * qu'administrateur pour ensuite accéder aux fonctionnalités de modification et
+ * de suppression de stagiaires dans la TableView.
+ */
 public class Admin {
 
 	private VBox vbox;
@@ -24,20 +29,29 @@ public class Admin {
 	private Button supprimerBtn;
 	private Button adminBtn;
 	private boolean isLoggedIn = false;
-    private TableView<Stagiaire> tableView;
+	private TableView<Stagiaire> tableView;
 
-
-	// Constructeur de la classe Admin.
+	/**
+	 * Construit une instance de la classe Admin.
+	 * 
+	 * @param vbox          la VBox qui contient l'interface de l'application
+	 * @param mainInterface l'instance de MainInterface qui gère l'interface
+	 *                      principale de l'application
+	 * @param tableView     la TableView qui affiche la liste des stagiaires
+	 */
 	public Admin(VBox vbox, MainInterface mainInterface, TableView<Stagiaire> tableView) {
 		this.vbox = vbox;
 		this.mainInterface = mainInterface;
-        this.tableView = tableView;
+		this.tableView = tableView;
 
 	}
 
 	private MainInterface mainInterface;
 
-	// Méthode pour afficher l'interface de connexion.
+	/**
+	 * Affiche l'interface de connexion pour l'administrateur. Cette méthode est
+	 * appelée lorsque l'administrateur clique sur le bouton "Admin".
+	 */
 	public void showLoginInterface() {
 		loginLabel = new Label("Login:");
 		passwordLabel = new Label("Mot de passe:");
@@ -63,12 +77,17 @@ public class Admin {
 		vbox.getChildren().addAll(loginLabel, loginField, passwordLabel, passwordField, okBtn);
 	}
 
-	// Méthode pour masquer l'interface de connexion.
+	/**
+	 * Masque l'interface de connexion de l'administrateur. Cette méthode est
+	 * appelée lorsque l'administrateur est connecté.
+	 */
 	private void hideLoginInterface() {
 		vbox.getChildren().removeAll(loginLabel, loginField, passwordLabel, passwordField, okBtn);
 	}
 
-	// Méthode pour afficher le bouton "Admin" dans la VBox.
+	/**
+	 * Affiche le bouton "Admin" pour permettre la connexion de l'administrateur.
+	 */
 	private void showAdminLoginButton() {
 		if (!isLoggedIn) {
 			if (adminBtn == null || !vbox.getChildren().contains(adminBtn)) {
@@ -79,7 +98,9 @@ public class Admin {
 		}
 	}
 
-	// Méthode pour afficher les boutons d'administration dans la VBox.
+	/**
+	 * Méthode pour afficher les boutons d'administration dans la VBox.
+	 */
 	private void showAdminButtons() {
 		modifierBtn = new Button("Modifier");
 		ModifierButton modifierButton = new ModifierButton();
@@ -92,22 +113,22 @@ public class Admin {
 			}
 		});
 
-        supprimerBtn = new Button("Supprimer");
+		supprimerBtn = new Button("Supprimer");
 		supprimerBtn.setOnAction(event -> {
-		    // Récupère le stagiaire sélectionné dans la TableView
-			tableView.getSelectionModel();//.setSelectionMode(SelectionMode.SINGLE);
-		    Stagiaire stagiaireASupprimer = tableView.getSelectionModel().getSelectedItem();
-		    if (stagiaireASupprimer != null) {
-		    	Arbre arbre;
-		        // Supprime le stagiaire de l'arbre binaire de recherche
+			// Récupère le stagiaire sélectionné dans la TableView
+			tableView.getSelectionModel();// .setSelectionMode(SelectionMode.SINGLE);
+			Stagiaire stagiaireASupprimer = tableView.getSelectionModel().getSelectedItem();
+			if (stagiaireASupprimer != null) {
+				Arbre arbre;
+				// Supprime le stagiaire de l'arbre binaire de recherche
 				try {
 					arbre = new Arbre();
 					arbre.supprimerStagiaire(stagiaireASupprimer.getNom());
-					 
+
 					// Met à jour la TableView en enlevant le stagiaire supprimé
 //				    tableView.getItems().clear();
 					tableView.setItems(FXCollections.observableList(arbre.affichageInfixe()));
-					
+
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -115,12 +136,11 @@ public class Admin {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			    
-			   
-			    
+
 			} else {
-			    // Aucun élément n'est sélectionné dans la TableView,  afficher un message d'erreur ou un avertissement
-			    System.out.println("Veuillez sélectionner un stagiaire à supprimer.");
+				// Aucun élément n'est sélectionné dans la TableView, afficher un message
+				// d'erreur ou un avertissement
+				System.out.println("Veuillez sélectionner un stagiaire à supprimer.");
 			}
 		});
 
@@ -134,7 +154,9 @@ public class Admin {
 		vbox.getChildren().addAll(modifierBtn, supprimerBtn, logoutBtn);
 	}
 
-	// Méthode pour masquer les boutons d'administration dans la VBox.
+	/**
+	 * Méthode pour masquer les boutons d'administration dans la VBox.
+	 */
 	private void hideAdminButtons() {
 		vbox.getChildren().removeAll(modifierBtn, supprimerBtn);
 	}

@@ -6,6 +6,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class StagiaireTableView extends TableView<Stagiaire> {
 
+	/**
+	 * Cette TableView contient cinq colonnes : Nom, Prénom, Département, Formation
+	 * et Année d'inscription. Les données sont obtenues à partir d'une liste
+	 * d'objets Stagiaire.
+	 */
 	public StagiaireTableView() {
 		TableColumn<Stagiaire, String> nomColonne = new TableColumn<>("Nom");
 		nomColonne.setCellValueFactory(new PropertyValueFactory<>("nom"));
