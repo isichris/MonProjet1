@@ -1,4 +1,4 @@
-package testProjet1.testProjet1;
+package FusionProjet1.Fusion3;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

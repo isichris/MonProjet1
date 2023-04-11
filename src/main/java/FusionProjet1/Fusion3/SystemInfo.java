@@ -1,4 +1,4 @@
-package isika.cda24.NEWPROJET1;
+package FusionProjet1.Fusion3;
 
 public class SystemInfo {
 
